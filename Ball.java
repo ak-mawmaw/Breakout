@@ -33,9 +33,9 @@ public class Ball {
    //this function will calculate based on the center of the paddle
    // set level in paddle we might have to change the math based on l  
        
-   int w = p.getL;    
-      if (this.x >= ((p.getX() - .5*w) && this.x <= (p.getX() + .5*w))
-         && this.y <= p.getY){
+    int w = p.getL();    
+      if ((this.x >= (p.getX() - .5*w)) && (this.x <= (p.getX() + .5*w))
+         && (this.y <= p.getY())){
             this.vy= -this.vy;  
       }
    }
