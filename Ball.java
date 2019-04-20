@@ -13,11 +13,11 @@ public class Ball {
    }
    
    // getters for x and y 
-     public double getX(Ball b ){
+     public double getX(){
          return this.x;
      }
          
-     public double getY(Ball b){
+     public double getY(){
          return this.y;
      } 
    
