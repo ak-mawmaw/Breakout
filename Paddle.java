@@ -20,6 +20,10 @@ public class Paddle{
       return this.y;
    } 
    
+   public int getL(){
+      return this.level;
+   } 
+   
    public void draw(){
       PennDraw.clear();
       PennDraw.setXscale(0,100);
