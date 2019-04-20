@@ -11,6 +11,15 @@ public class Paddle{
       move();
    }
    
+ // getters for x and y 
+   public double getX(){
+      return this.x;
+   }
+
+   public double getY(){
+      return this.y;
+   } 
+   
    public void draw(){
       PennDraw.clear();
       PennDraw.setXscale(0,100);
