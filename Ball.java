@@ -11,7 +11,16 @@ public class Ball {
       drawBall();  
       move();
    }
-
+   
+   // getters for x and y 
+     public double getX(Ball b ){
+         return this.x;
+     }
+         
+     public double getY(Ball b){
+         return this.y;
+     } 
+   
    public void drawBall(){
       
       PennDraw.setPenRadius(2);
