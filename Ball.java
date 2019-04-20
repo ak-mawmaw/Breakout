@@ -30,13 +30,14 @@ public class Ball {
      
    public void paddleCheck(Paddle p){
    // this will be a helper method and ill add this to move
-   //this function will calculate based on the center of the paddle 
-  
-    // set level in paddle 
+   //this function will calculate based on the center of the paddle
+   // set level in paddle we might have to change the math based on l  
        
-     if (this.x >= p.getX() - && p.getY() 
-     
-      
+   int w = p.getL;    
+      if (this.x >= ((p.getX() - .5*w) && this.x <= (p.getX() + .5*w))
+         && this.y <= p.getY){
+            this.vy= -this.vy;  
+      }
    }
 
        
