@@ -13,13 +13,13 @@ public class Ball {
    }
    
    // getters for x and y 
-     public double getX(){
-         return this.x;
-     }
+   public double getX(){
+      return this.x;
+   }
          
-     public double getY(){
-         return this.y;
-     } 
+   public double getY(){
+      return this.y;
+   } 
    
    public void drawBall(){
       
@@ -27,6 +27,18 @@ public class Ball {
       PennDraw.filledCircle(x, y, 2);
    
    }
+     
+   public void paddleCheck(Paddle p){
+   // this will be a helper method and ill add this to move
+   //this function will calculate based on the center of the paddle 
+  
+    // set level in paddle 
+       
+     if (this.x >= p.getX() - && p.getY() 
+     
+      
+   }
+
        
 
    public void move() {
