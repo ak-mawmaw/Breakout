@@ -4,7 +4,7 @@ public class Ball {
    public double y;
    public double vx = 1;
    public double vy = 1;
-
+   
    public Ball(){
       this.x = 50;
       this.y = 0;
@@ -42,4 +42,15 @@ public class Ball {
       while (true)
       ball.move();   
    }
+   public void paddleCheck(Paddle p){
+   // this will be a helper method and ill add this to move
+   //this function will calculate based on the center of the paddle
+   // set level in paddle we might have to change the math based on l        
+   int w = p.getL();    
+      if ((this.x >= (p.getX() - .5 * w)) && (this.x <= (p.getX() + .5 * w))
+         && (this.y <= p.getY())){
+            this.vy= -this.vy;  
+      }
+   }
+
 }
