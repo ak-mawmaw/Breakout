@@ -3,64 +3,46 @@ public class Paddle{
    public double x;
    public double y = 0;
    public int level;
+   public int width = 10 - (2 * level);
    
    public Paddle(double x, double y){
       this.x = x;
       this.y = y;
-      draw();
-      move();
+      this.level = level;
    }
-   
- // getters for x and y 
-   public double getX(){
-      return this.x;
-   }
-
-   public double getY(){
-      return this.y;
-   } 
-   
-   public int getL(){
-      return this.level;
-   } 
    
    public void draw(){
-      PennDraw.clear();
+    PennDraw.clear();
       PennDraw.setXscale(0,100);
       PennDraw.setYscale(0,100);
       PennDraw.setPenColor(PennDraw.RED);
       PennDraw.setPenRadius(0.02);
-      PennDraw.line(x - 10 , y, x + 10, y);
+      PennDraw.line(x - width, y, x +  , y);
    }
    
    //moves the bat along the screen
    public void move(){
-   
-      while (true){
-         char k;
-         String s;
-         if (PennDraw.hasNextKeyTyped() == true){
-            k = PennDraw.nextKeyTyped();
-            s = String.valueOf(k);
-            if ((s.equals("l") || s.equals("L") )&& x != 90){
-               x+= 10;
-               draw();
-            }
-            else if ((s.equals("j") || s.equals("J")) && x != 10){
-               x-= 10; 
-               draw();
-            }
+      char k;
+      String s;
+      draw();
+      PennDraw.enableAnimation(30);
+      if (PennDraw.hasNextKeyTyped() == true){
+         k = PennDraw.nextKeyTyped();
+         s = String.valueOf(k);
+         if ((s.equals("l") || s.equals("L") )&& x != 90){
+            x+= 10;
+            draw();
          }
+         else if ((s.equals("j") || s.equals("J")) && x != 10){
+            x-= 10; 
+            draw();
+         }
+         PennDraw.advance();
       }
-   }
-   public static void main (String[] args){
-   //PennDraw.enableAnimation(30);
-      Paddle longbat = new Paddle(50, 0);
-      //Ball ball = new Ball();
-      //PennDraw.advance();
-      
       
    }
+ 
 }
+
 
 
