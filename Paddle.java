@@ -10,6 +10,18 @@ public class Paddle{
       this.y = y;
       this.level = level;
    }
+    public double getX(){
+      return this.x;
+   }
+
+   public double getY(){
+      return this.y;
+   } 
+   
+   public int getL(){
+      return this.level;
+   } 
+   
    
    public void draw(){
     PennDraw.clear();
