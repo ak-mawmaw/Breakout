@@ -1,56 +1,66 @@
-public class Ball {
 
-   public double x;
-   public double y;
-   public double vx = 1;
-   public double vy = 1;
-   
-   public Ball(){
-      this.x = 50;
-      this.y = 0;
-   }
-
-   public void drawBall(){
-   
-      PennDraw.setXscale(0,100);
-      PennDraw.setYscale(0,100);
-      PennDraw.setPenRadius(2);
-      PennDraw.setPenColor(PennDraw.BLACK);
-      PennDraw.filledCircle(x, y, 2);
-   
-   }
-       
-
-   public void move() {
-      PennDraw.enableAnimation(30);         
-            x += vx;
-            y += vy;
-            drawBall();
-            
-            if (x > 99 || x < 1)
-               vx= -vx;
-         
-            if (y > 99 || y < 1)
-               vy= -vy;
-          
-          PennDraw.advance();
+   public class Paddle{
+   // x , y are the coordinates of the left side of the bat
+      private double x;
+      private double y = 0;
+      private int level;
+      public int width = 10 - level; 
       
-      
-   }
-   public static void main(String[] args) {
-      Ball ball = new Ball();
-      while (true)
-      ball.move();   
-   }
-   public void paddleCheck(Paddle p){
-   // this will be a helper method and ill add this to move
-   //this function will calculate based on the center of the paddle
-   // set level in paddle we might have to change the math based on l        
-   int w = p.getL();    
-      if ((this.x >= (p.getX() - .5 * w)) && (this.x <= (p.getX() + .5 * w))
-         && (this.y <= p.getY())){
-            this.vy= -this.vy;  
+      public Paddle(double x, double y, int level){
+         this.x = x;
+         this.y = y;
+         this.level = level;
       }
+        public double getX(){
+      return this.x;
+       }
+
+      public double getY(){
+         return this.y;
+      } 
+      
+      public int getW(){
+         return this.width;
+      } 
+   
+      
+      public void draw(){
+      PennDraw.clear();
+         PennDraw.setXscale(0,100);
+         PennDraw.setYscale(0,100);
+         PennDraw.setPenColor(PennDraw.RED);
+         PennDraw.setPenRadius(0.02);
+         PennDraw.line(x - width , y, x + width, y);
+      }
+      
+      //moves the bat along the screen
+      public void move(){
+         char k;
+         String s;
+         draw();
+         PennDraw.enableAnimation(30);
+         if (PennDraw.hasNextKeyTyped() == true){
+            k = PennDraw.nextKeyTyped();
+            s = String.valueOf(k);
+            if ((s.equals("l") || s.equals("L") )&& x != 90){
+               x+= 10;
+               draw();
+            }
+            else if ((s.equals("j") || s.equals("J")) && x != 10){
+               x-= 10; 
+               draw();
+            }
+            PennDraw.clear();
+            PennDraw.advance();
+         }
+         
+      }
+   public static void main(String[] args){
+      Paddle paddle = new Paddle(50, 0, 0 );
+      while (true)
+      paddle.move();
+   }
+   
    }
 
-}
+
