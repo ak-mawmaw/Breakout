@@ -103,4 +103,12 @@ public class Game{
       game.simulate();
       game.build(10);
    }
+   
+   public String toString() {
+      String r = "";
+      r = "Block:" + this.block + "next:" + this.next + " current coordinates" + this.block.getLc() + this.block.getRc();
+      return r; 
+    }
+    
+
 }
