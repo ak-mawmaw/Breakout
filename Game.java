@@ -5,28 +5,57 @@ public class Game{
    Node head;
    Node last;
 
-   public Game( Ball ball, Paddle paddle){
+   public Game (Ball ball, Paddle paddle){
       this.ball = ball;
       this.paddle = paddle; 
-      head = new Node(Block a, null);
+      head = new Node(block, null);
+      last = new Node(block);
       
    }
    // call new node make recursive call 
-   public void build(Node n, int a){
-      r = a/10; 
-      c = a;
-      if ( r ==0 ){
-         return; 
+   // we might have to buld the nodes backwards and the one it takes in will be the 
+   //next 
+   public void build(int a){ // a is number of rows 
+
+      Node k = new Node(block);
+      if (last == null)
+         head.next = last;
+      
+      else{
+      PennDraw.enableAnimation(30);
+         if (a == 0)
+         return;
+         for (Node n = head; n.next!= null; n = n.next){
+            int i = 0;
+            int y = 96;
+            Block [] b = rowOfBlocks(y);
+            k = new Node(b[i], n.next);
+            n.insertBlock(k);
+         n.block.draw(i, y);
+         System.out.println(n.block);
+         System.out.println(y);
+            if (i == 9){
+               y-=4;
+               i = 0;
+               a--;
+            }
+               
+            i++;
+            PennDraw.advance();
+         }
+      
       }
-      if (c % 10 == 0 ) {
-         y -= 4;
-      }
-      if (n.block.getx() == 95){
-         r-=1;
-      }
-      c--; 
    }
 // if the x coordinate of the block is 95, end,
+
+   public Block[] rowOfBlocks(int y){
+      Block[] b = new Block[10];
+      
+      for (int i=5; i < 100; i += 10){
+         b[i] = new Block(i, y);
+      }
+      return b;
+   }
 
    public void simulate(){
    
@@ -47,7 +76,7 @@ public class Game{
       }
    }
 
-    public void paddleCheck(){
+   public void paddleCheck(){
    // this will be a helper method and ill add this to move
    //this function will calculate based on the center of the paddle
    // set level in paddle we might have to change the math based on l        
@@ -60,11 +89,11 @@ public class Game{
    // we will check the height of the ball before we call this, not inside
    // cchange this to check with the nodes, not a block 
    public void blockCheck(){
-      if (ball.getX() >= block.getLc()) && (ball.getX() <= block.getRc()) && (ball.getY() 
-      >= block.getBy()) && (ball.getY() <= block.getTy()) {
-            ball.bounce(); 
-         }
-
+      if (ball.getX() >= block.getLc() && (ball.getX() <= block.getRc()) && (ball.getY() 
+      >= block.getBy()) && (ball.getY() <= block.getTy())) {
+         ball.bounce(); 
+      }
+   
    }
 
    public static void main(String[] args){
@@ -72,5 +101,6 @@ public class Game{
       Paddle paddle = new Paddle(50,0,0); 
       Game game = new Game(baller, paddle);
       game.simulate();
+      game.build(10);
    }
 }
