@@ -4,11 +4,11 @@ public class Block{
     //constructor 
     //blocks take in nodes that contain the center coordinates
     //of the block
-   private Block(Node n){
+   public Block(Node n){
       this.n = n;
     
-
-   public ( Node n) // getter
+   
+      PennDraw.setXscale(0, 100);
       PennDraw.setYscale(0, 100);
    }
    
@@ -18,18 +18,20 @@ public class Block{
          return;
       
       else{
-         double z = Math.random();
-         if (z < .33 ) { 
+         //draw blocks of different and random colours
+         //recursive function here :)
+         double x = n.getX();
+         if (x < 33 ) { 
             PennDraw.setPenColor(PennDraw.GREEN);
             PennDraw.filledRectangle (n.getX(), n.getY(), 4, 2);
          } 
       
-         if (z < .66 && z >= .33 ) {   
+         if (x < 66 && x >= 33 ) {   
             PennDraw.setPenColor(PennDraw.RED);
             PennDraw.filledRectangle (n.getX(), n.getY(), 4, 2);
          }
       
-         if (z >= 0.66 && z < 1) {
+         if (x >= 66 && x < 100) {
             PennDraw.setPenColor(PennDraw.YELLOW);
             PennDraw.filledRectangle (n.getX(), n.getY(), 4, 2);
          }
@@ -40,7 +42,14 @@ public class Block{
       draw(n.next);
    }   
 
-      public static void main(String[] args){
+   /*public Node isHit( int x, int y){
+      for ( Node n = head; n.next != null; n = n.next){
+         if (Math.abs(n.getX() - x) <= 4 || n.getY() - y <= 2)
+         return n;
+      } 
+   }*/
+
+   public static void main(String[] args){
       Node[] node = new Node[10];
       Node last = new Node(95, 96, null);
       Node head = new Node(5, 96, last);
@@ -58,10 +67,12 @@ public class Block{
          }
       }
       
-      
+      System.out.println(head);
       Block b = new Block(head);
       b.draw(head);
       
       
    } 
 }
+
+
