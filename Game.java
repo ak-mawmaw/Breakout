@@ -2,8 +2,8 @@ public class Game{
    Ball ball;
    Paddle paddle; 
    Block block;
-   Node head;
-   Node last;
+  // Node head;
+ //  Node last;
 
    public Game (Ball ball, Paddle paddle){
       this.ball = ball;
@@ -16,24 +16,21 @@ public class Game{
    // we might have to buld the nodes backwards and the one it takes in will be the 
    //next 
    public void build(int a){ // a is number of rows 
-
-      Node k = new Node(block);
+   
+     //* Node k = new Node(block);
       if (last == null)
          head.next = last;
       
       else{
-      PennDraw.enableAnimation(30);
+         PennDraw.enableAnimation(30);
          if (a == 0)
-         return;
+            return;
          for (Node n = head; n.next!= null; n = n.next){
             int i = 0;
             int y = 96;
-            Block [] b = rowOfBlocks(y);
+            Block [] b = rowOfBlocks(y); 
             k = new Node(b[i], n.next);
             n.insertBlock(k);
-         n.block.draw(i, y);
-         System.out.println(n.block);
-         System.out.println(y);
             if (i == 9){
                y-=4;
                i = 0;
@@ -48,17 +45,12 @@ public class Game{
    }
 // if the x coordinate of the block is 95, end,
 
-   public Block[] rowOfBlocks(int y){
-      Block[] b = new Block[10];
-      
-      for (int i=5; i < 100; i += 10){
-         b[i] = new Block(i, y);
-      }
-      return b;
-   }
-
-   public void simulate(){
    
+
+   // this method actually runs the game.
+   // tha ball, paddle and blocks are made to interact here. 
+   public void simulate(){
+      PenDraw.clear(0,0,0)
       PennDraw.setXscale(0,100);
       PennDraw.setYscale(0,100);  
       while (ball.getX() <= 100 && paddle.getY() <=100){
@@ -89,7 +81,7 @@ public class Game{
    // we will check the height of the ball before we call this, not inside
    // cchange this to check with the nodes, not a block 
    public void blockCheck(){
-      if (ball.getX() >= block.getLc() && (ball.getX() <= block.getRc()) && (ball.getY() 
+      if (block.getX() >= block.getLc() && (ball.getX() <= block.getRc()) && (ball.getY() 
       >= block.getBy()) && (ball.getY() <= block.getTy())) {
          ball.bounce(); 
       }
@@ -103,12 +95,4 @@ public class Game{
       game.simulate();
       game.build(10);
    }
-   
-   public String toString() {
-      String r = "";
-      r = "Block:" + this.block + "next:" + this.next + " current coordinates" + this.block.getLc() + this.block.getRc();
-      return r; 
-    }
-    
-
 }
