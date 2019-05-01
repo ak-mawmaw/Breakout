@@ -5,39 +5,51 @@ public class Ball {
    private double vx = 1;
    private double vy = 1;
    
+   // constructor creates a ball that starts at the bottom 
+   //of the screen
    public Ball(){
-      this.x = 50;
-      this.y = 5;
+      this.x = 90 * Math.random();
+      this.y = 90 * Math.random();
    }
 
+   // draw the ball on teh screen
    public void drawBall(){
    
       //PennDraw.setXscale(0,100);
       //PennDraw.setYscale(0,100);
       PennDraw.setPenRadius(2);
-      PennDraw.setPenColor(PennDraw.BLACK);
+      //PennDraw.setPenColor(PennDraw.BLACK);
       PennDraw.filledCircle(x, y, 2);
    
    }
    
+   // return the x value
    public double getX(){
    return this.x;
    }
    
+   //return the y value
    public double getY(){
    return this.y;
    }
    
-   public void bounce(){
+    
+   // ball should bounce up if it hits the paddle.
+   public void bounceUp(){
    vy = -vy;
    }  
+
+   // ball should move in the opposite direction if we hit the side of a block
+   public void bounceDown(){
+      vx = -vx;
+   }
 
    public void move() {
       //PennDraw.enableAnimation(30);         
       x += vx;
       y += vy;
       //drawBall();
-      
+      // collision logic specifically for the walls
       if (x > 100) {
          x = 100;
          vx = -vx;
