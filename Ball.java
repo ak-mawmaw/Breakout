@@ -9,7 +9,7 @@ public class Ball {
    //of the screen
    public Ball(){
       this.x = 90 * Math.random();
-      this.y = 90 * Math.random();
+      this.y = 80 * Math.random();
    }
 
    // draw the ball on teh screen
